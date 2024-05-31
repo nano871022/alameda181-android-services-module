@@ -24,6 +24,7 @@ class CarouselDriveImpl(val context:Context): ICarouselHome {
                 CarouselDTO(
                     counter.getAndIncrement(),
                     it.name,
+                    it.description?:"",
                     it.url,
                     counter.getAndIncrement(),
                     order,

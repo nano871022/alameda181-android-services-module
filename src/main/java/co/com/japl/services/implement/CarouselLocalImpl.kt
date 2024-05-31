@@ -16,6 +16,7 @@ class CarouselLocalImpl (val context:Context): ICarouselHome {
                 .map{
                     CarouselDTO( drawable=resources.getIdentifier(it.name,"drawable",context.packageName),
                         name=it.name,
+                        description = "Local Image Saved",
                         id=it.name.replace("carousel","").toInt(),
                         url="",
                         order=it.name.replace("carousel","").toInt(),
