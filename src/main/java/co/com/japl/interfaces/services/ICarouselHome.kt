@@ -1,7 +1,7 @@
 package co.com.japl.interfaces.services
 
-import co.com.japl.interfaces.dtos.CarouselDTO
+import co.japl.android.homeconnect.model.models.CarouselDTO
 
 interface ICarouselHome {
-    fun getCarouselHome():List<CarouselDTO>
+    fun getCarouselHome():List<co.japl.android.homeconnect.model.models.CarouselDTO>
 }

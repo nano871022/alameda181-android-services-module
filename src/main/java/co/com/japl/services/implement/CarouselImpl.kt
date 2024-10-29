@@ -2,7 +2,7 @@ package co.com.japl.services.implement
 
 import android.content.Context
 import android.util.Log
-import co.com.japl.interfaces.dtos.CarouselDTO
+import co.japl.android.homeconnect.model.models.CarouselDTO
 import co.com.japl.interfaces.dtos.CarouselResponse
 import co.com.japl.interfaces.services.ICarouselHome
 import co.com.japl.model.BuildConfig
@@ -13,7 +13,7 @@ import java.util.Collections
 import java.util.concurrent.CompletableFuture
 
 class CarouselImpl(val context:Context) : ICarouselHome{
-    override fun getCarouselHome(): List<CarouselDTO> {
+    override fun getCarouselHome(): List<co.japl.android.homeconnect.model.models.CarouselDTO> {
         if(BuildConfig.CAROUSEL_HOME_JSON.toBoolean()){
             try {
                 val task = CompletableFuture.supplyAsync {
