@@ -17,6 +17,7 @@ import javax.inject.Inject
 class MessageLocalPort  @Inject constructor(private val svc:DbHelper?): IMessage{
 
    override fun getMessages():List<Message>{
+       Log.d(this.javaClass.name,"=== start#getMessages")
         svc?.let {
             val db = it.readableDatabase
             val projection = arrayOf(
@@ -44,7 +45,7 @@ class MessageLocalPort  @Inject constructor(private val svc:DbHelper?): IMessage
                     messages.add(Message(id, message, LocalDateTime.ofInstant(Instant.ofEpochMilli(date), ZoneOffset.UTC)))
                 }
             }
-            return messages.map {Message(it.id, it.message, it.date)}
+            return messages.map {Message(it.id, it.message, it.date)}.distinctBy { it.message }
         }
         return listOf()
     }
