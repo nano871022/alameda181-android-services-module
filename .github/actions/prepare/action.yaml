@@ -58,8 +58,6 @@ runs:
       
       - name: Copy Values on project
         run: |
-              ls ./japl-properties/alameda181/
-              ls ./app
               cp ./japl-properties/alameda181/google_services.json ./app/google-services.json
               rm -rf ./connect-gdrive/src/main/res/raw
               mkdir ./connect-gdrive/src/main/res/raw
