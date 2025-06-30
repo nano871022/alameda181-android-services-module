@@ -1,0 +1,85 @@
+name: Prepare project
+description: setting all project and prepare all files
+
+inputs:
+  SECRET_TOKEN:
+    description: token for private repository
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+
+      - name: Remove android about module old folder link
+        run: |
+              rm -rf japl-android-about-module
+              rm -rf ScheduleModule
+              rm -rf connect-gdrive
+              rm -rf japl-android-graphs
+        shell: bash
+
+      - name: Get japl-android-about-module
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.actor }}/japl-android-about-module
+          path: ./japl-android-about-module
+
+      - name: Get japl-android-schedule-module
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.actor }}/japl-android-schedule-module
+          path: ./ScheduleModule
+
+      - name: Get japl-android-google-connect-module
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.actor }}/japl-android-google-connect-module
+          path: ./connect-gdrive
+
+      - name: Get Finances to get Graphs module
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.actor }}/Finances
+          path: ./finances
+
+      - name: Get japl-android-ui
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.actor }}/japl-android-ui
+          path: ./ui
+
+      - name: Get japl-properties
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.actor }}/japl-properties
+          ref: main
+          path: ./japl-properties
+          token: ${{ inputs.SECRET_TOKEN }}
+      
+      - name: Copy Values on project
+        run: |
+              cp ./japl-properties/torressansebastian/google_services.json ./app/google-services.json
+              rm -rf ./connect-gdrive/src/main/res/raw
+              mkdir ./connect-gdrive/src/main/res/raw
+              cp ./japl-properties/alameda181/credentials.json ./connect-gdrive/src/main/res/raw/
+              cp ./japl-properties/alameda181/cralameda181_34c486bb5b56.json ./connect-gdrive/src/main/res/raw/
+              cp ./japl-properties/alameda181/uralameda181_keystorepassword.jks ./app/
+              rm -rf ./japl-properties
+        shell: bash
+
+      - name: Duplication Folder on upper case UI
+        run: ln -s ./ui ./UI
+        shell: bash
+
+      - name: link code to graphs folder
+        run: ln -s ./finances/japl-android-graphs ./japl-android-graphs 
+        shell: bash
+
+      - name: Install Java
+        uses: actions/setup-java@v4
+        with: 
+          distribution: 'temurin'
+          java-version: 17
+
+      - name: Setup Graddle And Validations
+        uses: gradle/actions/setup-gradle@v4
