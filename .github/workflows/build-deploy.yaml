@@ -42,7 +42,7 @@ jobs:
               android {
                 signingConfigs {
                   create("release") {
-                    storeFile = file("./torressansebastian.jks")
+                    storeFile = file("./uralameda181_keystorepassword.jks")
                     storePassword = "${{ secrets.SIGNING_STORE_PASSWORD }}"
                     keyAlias = "${{ secrets.SIGNING_KEY_ALIAS }}"
                     keyPassword = "${{ secrets.SIGNING_KEY_PASSWORD }}"
@@ -121,7 +121,7 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
               TAG_NAME="v${{ needs.Prepared_code.outputs.VersionCode }}"
-              git config --local user.email "actions-urtss@japl.dev"
-              git config --local user.name "Actions URTss"
+              git config --local user.email "actions-uralameda181@japl.dev"
+              git config --local user.name "Actions URAlameda181"
               git tag -a "$TAG_NAME" -m "${{ needs.Prepared_code.outputs.VersionName }}"
               git push origin "$TAG_NAME"
