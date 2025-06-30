@@ -23,7 +23,6 @@ runs:
         with:
           repository: ${{ github.actor }}/japl-android-about-module
           path: ./japl-android-about-module
-          ref: Finances
 
       - name: Get japl-android-schedule-module
         uses: actions/checkout@v4
@@ -64,7 +63,7 @@ runs:
               mkdir ./connect-gdrive/src/main/res/raw
               cp ./japl-properties/alameda181/credentials.json ./connect-gdrive/src/main/res/raw/
               cp ./japl-properties/alameda181/cralameda181_34c486bb5b56.json ./connect-gdrive/src/main/res/raw/
-              cp ./japl-properties/torressansebastian/torressansebastian.jks ./app/
+              cp ./japl-properties/alameda181/uralameda181_keystorepassword.jks ./app/
               rm -rf ./japl-properties
         shell: bash
 
